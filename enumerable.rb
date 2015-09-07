@@ -30,11 +30,13 @@ module Enumerable
 
 	end
 	
-	def my_all? 			#Why NoMethodError  for #length when passing block?
+	def my_all? 
+		return true unless block_given? #
+		
 		validated = true
 		my_each do |obj|
 			if block_given?
-				validated = false if yield obj == false
+				validated = false if yield(obj) == false
 			else
 				validated = false if obj == false
 			end
@@ -44,6 +46,7 @@ module Enumerable
 	end
 	
 	def my_any?
+	
 	
 	end
 	
