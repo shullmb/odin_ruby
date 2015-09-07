@@ -85,27 +85,31 @@ module Enumerable
 		count = 0
 		
 		if item.empty?
-			#print "no arg"			#debug
 			my_each do |obj|
 				if block_given?
 					count+=1 if yield(obj) == true
 				else
 					count+=1
 				end
-
 			end
 		else
-			#print "has arg" 		#debug
 			my_each do |obj|
-			#	puts "item: #{item}   obj: #{obj}"		 #debug
 				count +=1 if (obj == item.first)
 			end
 		end
 		count
+
 	end
 	
 	def my_map
-	
+		return self.to_enum unless block_given?
+		
+		output = Array.new
+		
+		my_each do |obj|
+			output << yield(obj)
+		end
+		output
 	end
 	
 	def my_inject
