@@ -48,13 +48,14 @@ module Enumerable
 	
 	def my_any?
 	
-		validated = true
+		validated = false
 		
 		my_each do |obj|
 			if block_given?
 				validated = true if yield(obj) == true
 			else
 				validated = true if obj == true
+			end
 		end
 		
 		validated
@@ -62,7 +63,19 @@ module Enumerable
 	end
 	
 	def my_none?
-	
+
+		validated = true
+		
+		my_each do |obj|
+			if block_given?
+				validated = false if yield(obj) == true
+			else
+				validated = false if obj == true
+			end
+		end
+		
+		validated
+		
 	end
 	
 	def my_count
