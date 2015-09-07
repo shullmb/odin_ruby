@@ -31,9 +31,9 @@ module Enumerable
 	end
 	
 	def my_all? 
-		return true unless block_given? #
-		
+				
 		validated = true
+		
 		my_each do |obj|
 			if block_given?
 				validated = false if yield(obj) == false
@@ -41,6 +41,7 @@ module Enumerable
 				validated = false if obj == false
 			end
 		end
+		
 		validated
 	
 	end
