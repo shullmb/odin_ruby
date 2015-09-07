@@ -13,6 +13,7 @@ module Enumerable
 	end
 	
 	def my_each_with_index
+	
 		return self unless block_given?
 		
 		for index in 0...self.length
@@ -22,6 +23,7 @@ module Enumerable
 	end
 	
 	def my_select
+	
 		return self unless block_given?
 		
 		output = Array.new
@@ -78,8 +80,28 @@ module Enumerable
 		
 	end
 	
-	def my_count
+	def my_count(*item)
 	
+		count = 0
+		
+		if item.empty?
+			#print "no arg"			#debug
+			my_each do |obj|
+				if block_given?
+					count+=1 if yield(obj) == true
+				else
+					count+=1
+				end
+
+			end
+		else
+			#print "has arg" 		#debug
+			my_each do |obj|
+			#	puts "item: #{item}   obj: #{obj}"		 #debug
+				count +=1 if (obj == item.first)
+			end
+		end
+		count
 	end
 	
 	def my_map
