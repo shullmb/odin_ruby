@@ -48,6 +48,16 @@ module Enumerable
 	
 	def my_any?
 	
+		validated = true
+		
+		my_each do |obj|
+			if block_given?
+				validated = true if yield(obj) == true
+			else
+				validated = true if obj == true
+		end
+		
+		validated
 	
 	end
 	
