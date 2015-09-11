@@ -137,6 +137,22 @@ module Enumerable
 		end
 		output
 	end
+	
+	# def my_p_and_b_map(proc)
+	# 	output = Array.new
+	# 	blocked = Array.new
+	# 		my_each do |obj|
+	# 			output << proc.call(obj)
+	# 		end
+	# 	if block_given?
+	# 		output.my_each do |prc|
+	# 			blocked << yield(prc)
+	# 		end
+	# 		blocked
+	# 	else
+	# 		output
+	# 	end		
+	# end
 
 	def my_inject(*memo)
 		memo = nil
