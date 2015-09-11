@@ -121,6 +121,23 @@ module Enumerable
 		output
 	end
 	
+	def my_proc_and_block_map(proc)
+		output = Array.new
+		if block_given?
+			#puts "here"
+			my_each do |obj|
+				procd = proc.call(obj)
+				output << yield(procd)
+			end
+		else
+			#puts "there"
+			my_each do |obj|
+				output << proc.call(obj)
+			end
+		end
+		output
+	end
+
 	def my_inject(*memo)
 		memo = nil
 		self.my_each do |obj|
