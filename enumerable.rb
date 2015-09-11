@@ -111,9 +111,30 @@ module Enumerable
 		end
 		output
 	end
-	
-	def my_inject
-	
+
+	def my_proc_map(&proc)
+		output = Array.new
+		
+		my_each do |obj|
+			output << proc.call(obj)
+		end
+		output
 	end
 	
+	def my_inject(*memo)
+		memo = nil
+		self.my_each do |obj|
+			if memo.nil?
+				memo = obj
+			else
+				memo = yield(memo, obj)
+			end
+		end
+		memo			
+	end
+	
+end
+
+def multiply_els(arr)
+	arr.my_inject {|product, num| product * num}
 end
